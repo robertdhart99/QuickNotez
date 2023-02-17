@@ -2,9 +2,12 @@ import { Link } from '@remix-run/react';
 
 export default function Index() {
     return (
-        <>
-            <h1>Hello World!</h1>
-            <Link to="/demo">Go to Demo Page</Link>
-        </>
+        <main id="content">
+            <h1>A Better way of Managing Notes</h1>
+            <p>Try our early beta and never loose track of your notes again!</p>
+            <p id="cta">
+                <Link to="/notes">Try Now!</Link>
+            </p>
+        </main>
     );
 }
