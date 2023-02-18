@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react";
 
 import styles from '~/styles/main.css'
+import MainNavigation from "~/components/MainNavigation";
 
 export const meta = () => ({
   charset: "utf-8",
@@ -22,7 +23,10 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+          <body>
+              <header>
+                  <MainNavigation />
+              </header>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
