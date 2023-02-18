@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\app",
+    "\\app\\components",
     "\\app\\routes",
     "\\app\\styles"
   ],
+  "SelectedNode": "\\app\\styles\\main.css",
   "PreviewInSolutionExplorer": false
 }
