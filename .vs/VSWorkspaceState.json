@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app\\routes"
+    "\\app",
+    "\\app\\routes",
+    "\\app\\styles"
   ],
+  "SelectedNode": "\\app\\styles\\home.css",
   "PreviewInSolutionExplorer": false
 }
