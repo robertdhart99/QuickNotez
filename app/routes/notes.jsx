@@ -29,12 +29,18 @@ export async function loader() {
 export async function action({request}) { 
     const formData = await request.formData(); // backend pulls data submitted by form 
     const noteData = Object.fromEntries(formData); // converts formdata object into plain javascript object (these 2 lines basically pull in user input)
-    //add validation...
+
+    // validation for the title to be at least 5 long
+    if (noteData.title.trim().length < 5) {
+        return { message: 'Invalid title - must be at least 5 characters long.' };
+    }
+
     const existingNotes = await getStoredNotes(); //gets ahold of existing noters in the json file
     noteData.id = new Date().toISOString(); // .id so unique identifier for each note 
     const updatedNotes = existingNotes.concat(noteData); // creates updated notes object using existingNotes and concatinating note data with new note
     await storeNotes(updatedNotes); // returns a promise so add await in case we want to redirect - the line below
-    return redirect('/notes'); //redirects to /notes page
+    // await new Promise((resolve, reject) => setTimeout(() => resolve(), 2000)); //used to test the button disabled by making it wait 2 sec before updating.
+    return redirect('/notes'); //redirects to /notes page 
 
 }
 
