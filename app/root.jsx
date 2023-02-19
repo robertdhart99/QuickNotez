@@ -1,5 +1,6 @@
 import {
-  Links,
+    Link,
+    Links,
   LiveReload,
   Meta,
   Outlet,
@@ -17,23 +18,48 @@ export const meta = () => ({
 });
 
 export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-      </head>
-          <body>
-              <header>
-                  <MainNavigation />
-              </header>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+            </head>
+            <body>
+                <header>
+                    <MainNavigation />
+                </header>
+                <Outlet />
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
+    );
+}
+//remix will display this if an error occurs 
+export function ErrorBoundary({error}) {
+    return (
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+                <title>An error occurred!</title>
+            </head>
+            <body>
+                <header>
+                    <MainNavigation />
+                </header>
+                <main className='error'>
+                    <h1>An Error occurred!</h1>
+                    <p>{error.message}</p>
+                    <p>Back to <Link to="/">safety</Link>!</p>
+                </main>
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
+    );
 }
 
 export function links() {
