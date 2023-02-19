@@ -55,6 +55,15 @@ export function links() {
     return [...newNoteLinks(), ...noteListLinks()]; //merges in all links of any components we might be using ... is a spread operator  merges array into the returned array // pattern called surfacing links ( in remix documentation) allows for one consistent api for making your style files available 
 }//loads all the css files that are needed for all the components that we use in this route component
 
+//this is for the meta data it overrides the meta data from the root
+export function meta() {
+    return {
+        title: 'All Notes',
+        description: 'Manage your notes with ease.'
+    };
+}
+
+
 //this component will be rendered by remix whenever we have an error response being thrown 
 export function CatchBoundary() {
     const caughtResponse = useCatch()
