@@ -3,9 +3,10 @@
     "",
     "\\app",
     "\\app\\components",
+    "\\app\\data",
     "\\app\\routes",
     "\\app\\styles"
   ],
-  "SelectedNode": "\\app\\styles\\main.css",
+  "SelectedNode": "\\app\\components\\NewNote.jsx",
   "PreviewInSolutionExplorer": false
 }

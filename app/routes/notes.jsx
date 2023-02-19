@@ -1,5 +1,5 @@
-import { redirect } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, redirect } from '@remix-run/node';
+import { Link, useCatch, useLoaderData } from '@remix-run/react';
 
 import NewNote, { links as newNoteLinks } from '~/components/NewNote';
 import NoteList, { links as noteListLinks } from '~/components/NoteList';
@@ -21,6 +21,13 @@ export default function NotesPage() {
 //returns a promise so added async to turn loader into async function
 export async function loader() {
     const notes = await getStoredNotes();
+    if (!notes || notes.length === 0) {
+        throw json(
+            { message: 'Could not find any notes.' }, {
+            status: 404,
+            statusText: 'Not Found',
+        });
+    }
     return notes; // data returned is serialized 
 } 
 
@@ -47,3 +54,27 @@ export async function action({request}) {
 export function links() {
     return [...newNoteLinks(), ...noteListLinks()]; //merges in all links of any components we might be using ... is a spread operator  merges array into the returned array // pattern called surfacing links ( in remix documentation) allows for one consistent api for making your style files available 
 }//loads all the css files that are needed for all the components that we use in this route component
+
+//this component will be rendered by remix whenever we have an error response being thrown 
+export function CatchBoundary() {
+    const caughtResponse = useCatch()
+
+    const message = caughtResponse.data.message || 'Data not found';
+
+
+    return <main>
+        <NewNote />
+        <p className='info-message'>{message}</p>
+    </main>
+}
+
+//error for the notes specific route- handles all normal errors for this
+export function ErrorBoundary({error}) {
+    return(
+    <main className='error'>
+        <h1>An error related to your notes occurred!</h1>
+        <p>{error.message}</p>
+        <p>Back to <Link to="/">safety</Link>!</p>
+    </main >
+    );
+}
