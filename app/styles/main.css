@@ -1,6 +1,15 @@
 * {
     box-sizing: border-box;
 }
+.banner {
+    text-align: center;
+    /*margin-bottom: 5px;*/ 
+}
+
+.title {
+    font-size: 3rem; 
+    color: var(--color-secondary-200);
+}
 
 :root {
     --color-primary-10: #e7cffe;
